@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ҳисобкунаки маоши ҳафтаина | 12.21 ва 15.26 | 20% налог | 8% страховка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            max-width: 550px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2b44 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .body {
+            padding: 25px;
+        }
+        .info-box {
+            background: #f0f9ff;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #1e3a5f;
+            box-shadow: 0 0 0 3px rgba(30,58,95,0.1);
+        }
+        .input-group small {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #64748b;
+        }
+        button {
+            width: 100%;
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #0f2b44;
+            transform: translateY(-2px);
+        }
+        .result {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 16px;
+        }
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            font-weight: 600;
+            color: #475569;
+        }
+        .result-value {
+            font-weight: 800;
+            font-size: 20px;
+            color: #1e293b;
+        }
+        .netto {
+            background: #10b981;
+            color: white;
+            margin-top: 10px;
+            padding: 15px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .netto .label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .netto .value {
+            font-size: 32px;
+            font-weight: 800;
+        }
+        .footer {
+            background: #f8fafc;
+            padding: 12px;
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+        }
+        .error {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 12px;
+            border-radius: 16px;
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="header">
+        <h1>💰 Ҳисобкунаки маоши ҳафтаина</h1>
+        <p>12.21 сом./соат (48 соати аввал) | 15.26 сом./соат (аз 48 боло)</p>
+    </div>
+    <div class="body">
+        <div class="info-box">
+            📌 <strong>Шартҳои ҳисоб:</strong><br>
+            • 1 соати муқаррарӣ: <strong>12.21 сомонӣ</strong> (то 48 соат)<br>
+            • 1 соати иловагӣ: <strong>15.26 сомонӣ</strong> (аз 48 соат боло)<br>
+            • Налог: <strong>20%</strong><br>
+            • Страховка: <strong>8%</strong>
+        </div>
+
+        <div class="input-group">
+            <label>⏱ Соатҳои коркардашуда дар ҳафта</label>
+            <input type="number" id="hours" step="0.01" value="55.30" placeholder="Масалан: 55.30">
+            <small>Соатҳои муқаррарӣ 48, соатҳои иловагӣ ба таври автоматӣ ҳисоб мешаванд</small>
+        </div>
+
+        <button id="calcBtn">🧮 Ҳисоб кардан</button>
+
+        <div id="errorMsg" class="error"></div>
+
+        <div id="resultArea" style="display: none;">
+            <div class="result">
+                <div class="result-row">
+                    <span class="result-label">📋 Соатҳои муқаррарӣ (то 48)</span>
+                    <span class="result-value" id="normalHours">0</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">⚡ Соатҳои иловагӣ (аз 48 боло)</span>
+                    <span class="result-value" id="overtimeHours">0</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">💵 Маоши соатҳои муқаррарӣ</span>
+                    <span class="result-value" id="normalPay">0 сом.</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">⚡ Маоши соатҳои иловагӣ</span>
+                    <span class="result-value" id="overtimePay">0 сом.</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">💰 Маоши умумӣ (брутто)</span>
+                    <span class="result-value" id="brutto">0 сом.</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">🏦 Налог 20%</span>
+                    <span class="result-value" id="tax">0 сом.</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">🛡 Страховка 8%</span>
+                    <span class="result-value" id="insurance">0 сом.</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">📉 Ҷамъи нигоҳдорӣ</span>
+                    <span class="result-value" id="deductions">0 сом.</span>
+                </div>
+            </div>
+            <div class="netto">
+                <div class="label">✅ Маоши соф (ба даст мерасад)</div>
+                <div class="value" id="netto">0 сом.</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        © Ҳисобкунак | 1 соати муқаррарӣ 12.21 сом. | 1 соати иловагӣ 15.26 сом. | 20% налог | 8% страховка
+    </div>
+</div>
+
+<script>
+    // Константаҳо
+    const NORMAL_RATE = 12.21;      // соати муқаррарӣ
+    const OVERTIME_RATE = 15.26;    // соати иловагӣ
+    const NORMAL_LIMIT = 48;         // ҳадди соатҳои муқаррарӣ
+    const TAX_RATE = 0.20;           // 20%
+    const INSURANCE_RATE = 0.08;     // 8%
+
+    function calculateSalary(totalHours) {
+        // Соатҳои муқаррарӣ ва иловагӣ
+        let normalHours = Math.min(totalHours, NORMAL_LIMIT);
+        let overtimeHours = Math.max(0, totalHours - NORMAL_LIMIT);
+        
+        // Маоши соатҳо
+        let normalPay = normalHours * NORMAL_RATE;
+        let overtimePay = overtimeHours * OVERTIME_RATE;
+        let gross = normalPay + overtimePay;
+        
+        // Нигоҳдорӣ
+        let tax = gross * TAX_RATE;
+        let insurance = gross * INSURANCE_RATE;
+        let totalDeductions = tax + insurance;
+        let net = gross - totalDeductions;
+        
+        return {
+            normalHours: normalHours,
+            overtimeHours: overtimeHours,
+            normalPay: normalPay,
+            overtimePay: overtimePay,
+            gross: gross,
+            tax: tax,
+            insurance: insurance,
+            totalDeductions: totalDeductions,
+            net: net
+        };
+    }
+
+    function formatNumber(value) {
+        return value.toFixed(2);
+    }
+
+    function displayResults() {
+        let hoursInput = document.getElementById('hours').value;
+        let totalHours = parseFloat(hoursInput);
+        
+        // Валидатсия
+        if (isNaN(totalHours) || totalHours < 0) {
+            document.getElementById('errorMsg').innerText = "❗ Лутфан миқдори дурусти соатҳо ворид кунед (масалан: 55.30)";
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('resultArea').style.display = 'none';
+            return;
+        }
+        
+        if (totalHours === 0) {
+            document.getElementById('errorMsg').innerText = "⚠ Соатҳои коркардашуда 0 мебошад. Ҳисоб вуҷуд надорад.";
+            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('resultArea').style.display = 'none';
+            return;
+        }
+        
+        document.getElementById('errorMsg').style.display = 'none';
+        
+        let salary = calculateSalary(totalHours);
+        
+        // Намоиш
+        document.getElementById('normalHours').innerText = salary.normalHours.toFixed(2);
+        document.getElementById('overtimeHours').innerText = salary.overtimeHours.toFixed(2);
+        document.getElementById('normalPay').innerHTML = formatNumber(salary.normalPay) + " сом.";
+        document.getElementById('overtimePay').innerHTML = formatNumber(salary.overtimePay) + " сом.";
+        document.getElementById('brutto').innerHTML = formatNumber(salary.gross) + " сом.";
+        document.getElementById('tax').innerHTML = formatNumber(salary.tax) + " сом.";
+        document.getElementById('insurance').innerHTML = formatNumber(salary.insurance) + " сом.";
+        document.getElementById('deductions').innerHTML = formatNumber(salary.totalDeductions) + " сом.";
+        document.getElementById('netto').innerHTML = formatNumber(salary.net) + " сом.";
+        
+        document.getElementById('resultArea').style.display = 'block';
+    }
+    
+    // Рӯйдодҳо
+    document.getElementById('calcBtn').addEventListener('click', displayResults);
+    
+    // Ҳисоби аввал бо қимати 55.30
+    window.addEventListener('load', () => {
+        displayResults();
+    });
+</script>
+</body>
+</html>
